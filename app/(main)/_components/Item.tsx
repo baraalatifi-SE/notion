@@ -174,7 +174,7 @@ function Item({
 
               <DropdownMenuSeparator />
               <div className="p-2 text-muted-foreground text-xs">
-                Last Edited by : {user?.fullName}
+                Last Edited by : {user.user?.firstName}
               </div>
             </DropdownMenuContent>
           </DropdownMenu>
