@@ -40,10 +40,11 @@ function Editor({ onChange, initialContent, editable }: EditorProps) {
   const getContentText = (): string => {
     if (!editor?.topLevelBlocks) return "";
     return editor.topLevelBlocks
-      .map(
-        (block: any) =>
-          block.content?.map((item: any) => item.text || "").join("") || "",
-      )
+      .map((block: any) => {
+        return block.content && Array.isArray(block.content)
+          ? block.content.map((item: any) => item.text || "").join("")
+          : "";
+      })
       .join(" ");
   };
 
