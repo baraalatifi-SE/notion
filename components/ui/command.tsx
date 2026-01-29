@@ -51,7 +51,7 @@ function CommandDialog({
       <DialogContent
         style={{ width: "50%", maxWidth: "90vw", borderRadius: "1rem" }}
         className={cn(
-          "bg-background overflow-hidden p-0 shadow-[0_20px_60px_rgb(0,0,0,0.15)] dark:shadow-[0_20px_60px_rgb(0,0,0,0.5)] top-[6%]! left-[50%]! -translate-x-[50%]! translate-y-0! !w-[50%] !rounded-3xl border border-border/60 ring-1 ring-black/5 dark:ring-white/10",
+          "bg-background overflow-hidden p-0 shadow-[0_20px_60px_rgb(0,0,0,0.15)] dark:shadow-[0_20px_60px_rgb(0,0,0,0.5)] !w-[50%] !rounded-3xl border border-border/60 ring-1 ring-black/5 dark:ring-white/10",
           className,
         )}
         showCloseButton={showCloseButton}

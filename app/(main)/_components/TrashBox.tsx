@@ -16,6 +16,7 @@ function TrashBox() {
   const documentsTrashed = useQuery(api.documents.getTrash);
   const documentsRestored = useMutation(api.documents.restoreDocument);
   const removeDocument = useMutation(api.documents.removeDocument);
+  const removeAllTrash = useMutation(api.documents.removeAllTrash);
 
   const [search, setSearch] = useState("");
   const filteredDocuments = documentsTrashed?.filter((document) => {
@@ -62,16 +63,38 @@ function TrashBox() {
     }
   };
 
+  const onDeleteAll = () => {
+    const promise = removeAllTrash();
+
+    toast.promise(promise, {
+      loading: "Deleting all trashed documents...",
+      success: "All trashed documents deleted",
+      error: "Failed to delete all documents",
+    });
+
+    router.push("/documents");
+  };
+
   return (
     <div className="text-sm">
       <div className="flex items-center gap-x-1 p-2">
         <Search className="h-4 w-4" />
         <input
-          className="h-7 p-2 focus-visible:ring-transparent bg-secondary"
+          className="h-7 p-2 focus-visible:ring-transparent bg-secondary flex-1"
           placeholder="Filter by title..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
+        {documentsTrashed && documentsTrashed.length > 0 && (
+          <ConfirmModel onConfirm={onDeleteAll}>
+            <button
+              className="h-7 px-3 text-xs bg-destructive/10 hover:bg-destructive/20 text-destructive rounded-sm transition-colors"
+              title="Delete all trashed documents"
+            >
+              Delete All
+            </button>
+          </ConfirmModel>
+        )}
       </div>
 
       <div className="mx-2 px-1 pb-1">

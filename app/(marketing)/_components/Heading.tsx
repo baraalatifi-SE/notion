@@ -11,13 +11,13 @@ import Link from "next/link";
 function Heading() {
   const { isAuthenticated, isLoading } = useConvexAuth();
   return (
-    <div className="max-w-3xl space-y-3 ">
+    <div className="max-w-3xl space-y-2 sm:space-y-3 md:space-y-4 px-6 md:px-0">
       <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold">
         Your Ideas, Documents, & Plans. Unified. Welcome to{" "}
         <span className="underline ml-1">Notion</span>
       </h1>
-      <h3 className="text-base sm:text-lx md:text-2xl font-medium">
-        Notion is the all-in-one workspace you can use to write <br /> plan,
+      <h3 className="text-base sm:text-xl md:text-2xl font-medium">
+        Notion is the all-in-one workspace you can use to write, plan,
         collaborate, and get things done.
       </h3>
 

@@ -48,7 +48,7 @@ function SearchCommand() {
   }, [toggle]);
 
   const handleSelect = (id: string) => {
-    router.push(`/document/${id}`);
+    router.push(`/documents/${id}`);
     onClose();
   };
 
@@ -71,7 +71,7 @@ function SearchCommand() {
           {searchDocuments?.map((doc) => (
             <CommandItem
               key={doc._id}
-              value={`${doc._id}-${doc.title}`}
+              value={doc._id}
               title={doc.title}
               onSelect={handleSelect}
             >

@@ -7,6 +7,7 @@ import { useCreateBlockNote } from "@blocknote/react";
 import { useTheme } from "next-themes";
 import "@blocknote/core/fonts/inter.css";
 import "@blocknote/mantine/style.css";
+import { getTextDirection } from "@/lib/text-direction";
 
 interface EditorProps {
   onChange: (content: string) => void;
@@ -35,8 +36,28 @@ function Editor({ onChange, initialContent, editable }: EditorProps) {
     onChange(JSON.stringify(content, null, 2));
   };
 
+  // Extract text content from blocks to detect direction
+  const getContentText = (): string => {
+    if (!editor?.topLevelBlocks) return "";
+    return editor.topLevelBlocks
+      .map(
+        (block: any) =>
+          block.content?.map((item: any) => item.text || "").join("") || "",
+      )
+      .join(" ");
+  };
+
+  const contentText = getContentText();
+  const textDirection = getTextDirection(contentText);
+
   return (
-    <div>
+    <div
+      style={{
+        direction: textDirection,
+        textAlign: textDirection === "rtl" ? "right" : "left",
+      }}
+      className="w-full"
+    >
       <BlockNoteView
         editor={editor}
         theme={resolvedTheme === "dark" ? "dark" : "light"}

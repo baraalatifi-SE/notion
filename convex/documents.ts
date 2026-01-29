@@ -126,6 +126,27 @@ export const removeDocument = mutation({
   },
 });
 
+// Mutation to permanently remove all trashed documents
+export const removeAllTrash = mutation({
+  handler: async (ctx) => {
+    const userId = await validateUser(ctx); // Validate the user
+
+    // Get all archived documents for this user
+    const trashedDocuments = await ctx.db
+      .query("documents")
+      .withIndex("by_user", (q: any) => q.eq("userId", userId))
+      .filter((q: any) => q.eq(q.field("isArchived"), true))
+      .collect();
+
+    // Delete all trashed documents
+    for (const doc of trashedDocuments) {
+      await ctx.db.delete(doc._id);
+    }
+
+    return { count: trashedDocuments.length }; // Return the number of deleted documents
+  },
+});
+
 // Query to search for documents by title (partial match or return all if no title is provided or empty)
 export const searchByTitle = query({
   handler: async (ctx, { title }: { title?: string }) => {

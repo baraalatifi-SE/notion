@@ -20,30 +20,30 @@ function Navbar() {
       )}
     >
       <Logo />
-      <div className="md:ml-auto md:justify-end flex justify-between items-center md:w-fit w-full gap-x-2"></div>
-      {isLoading && <Spinner size={"lg"} />}
-      {isLoading && <Spinner />}
-      {!isAuthenticated && !isLoading && (
-        <>
-          <SignInButton>
-            <Button variant={"ghost"} size={"sm"}>
-              Log In
+      <div className="md:ml-auto md:justify-end flex justify-between items-center md:w-fit w-full gap-x-4">
+        {isLoading && <Spinner />}
+        {!isAuthenticated && !isLoading && (
+          <>
+            <SignInButton mode="modal">
+              <Button variant={"ghost"} size={"sm"}>
+                Log In
+              </Button>
+            </SignInButton>
+            <SignInButton mode="modal">
+              <Button size={"sm"}>Get Free Trial</Button>
+            </SignInButton>
+          </>
+        )}
+        {isAuthenticated && !isLoading && (
+          <>
+            <Button variant={"ghost"} size={"sm"} asChild>
+              <Link href="/documents">Enter Notion</Link>
             </Button>
-          </SignInButton>
-          <SignInButton>
-            <Button size={"sm"}>Get Free Trial</Button>
-          </SignInButton>
-        </>
-      )}
-      {isAuthenticated && !isLoading && (
-        <>
-          <Button variant={"ghost"} size={"sm"}>
-            <Link href="/decoments">Enter Notion</Link>
-          </Button>
-          <UserButton afterSwitchSessionUrl="/" />
-        </>
-      )}
-      <ModeToggle />
+            <UserButton afterSwitchSessionUrl="/" />
+          </>
+        )}
+        <ModeToggle />
+      </div>
     </div>
   );
 }

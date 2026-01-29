@@ -9,6 +9,7 @@ import { ImageIcon, Smile, X } from "lucide-react";
 import { IconPicker } from "./IconPicker";
 import TextareaAutosize from "react-textarea-autosize";
 import { useCoverImage } from "@/hooks/use-cover";
+import { getTextDirection } from "@/lib/text-direction";
 
 interface ToolbarProps {
   initialData: Doc<"documents">;
@@ -155,15 +156,26 @@ function Toolbar({ initialData, preview }: ToolbarProps) {
             onChange={(event) => onInput(event.target.value)}
             onKeyDown={onKeyDown}
             value={value}
-            className="w-auto bg-transparent resize-none font-bold text-center break-words outline-none text-[#37352F] dark:text-[#E8E8E8] placeholder:text-muted-foreground/40 leading-[1.2] tracking-tight"
+            className="w-auto bg-transparent resize-none font-bold break-words outline-none text-[#37352F] dark:text-[#E8E8E8] placeholder:text-muted-foreground/40 leading-[1.2] tracking-tight"
             placeholder="Untitled"
-            style={{ fontSize: "42px" }}
+            style={{
+              fontSize: "42px",
+              direction: getTextDirection(value),
+              textAlign: getTextDirection(value) === "rtl" ? "right" : "center",
+            }}
           />
         ) : (
           <div
             onClick={enableInput}
-            className="w-auto font-bold text-center break-words outline-none text-[#37352F] dark:text-[#E8E8E8] cursor-text py-1 leading-[1.2] tracking-tight hover:bg-primary/[0.02] rounded-lg transition-colors duration-200"
-            style={{ fontSize: "42px" }}
+            className="w-auto font-bold break-words outline-none text-[#37352F] dark:text-[#E8E8E8] cursor-text py-1 leading-[1.2] tracking-tight hover:bg-primary/[0.02] rounded-lg transition-colors duration-200"
+            style={{
+              fontSize: "42px",
+              direction: getTextDirection(initialData.title || ""),
+              textAlign:
+                getTextDirection(initialData.title || "") === "rtl"
+                  ? "right"
+                  : "center",
+            }}
           >
             {initialData.title || "Untitled"}
           </div>

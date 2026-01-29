@@ -154,7 +154,7 @@ function Item({
             >
               <div
                 role="button"
-                className="opacity-1 group-hover:opacity-100 h-full
+                className="opacity-100 sm:opacity-0 sm:group-hover:opacity-100 h-full
                  ml-auto rounded-sm hover:bg-neutral-300 dark:hover:bg-neutral-600"
               >
                 <MoreHorizontal className="w-4 h-4 text-muted-foreground" />
@@ -181,7 +181,7 @@ function Item({
           <div
             onClick={onCreate} // Handle the click to create a sub-document
             role="button"
-            className="opacity-1 group-hover:opacity-100 ml-auto h-full
+            className="opacity-100 sm:opacity-0 sm:group-hover:opacity-100 ml-auto h-full
            rounded-sm hover:bg-neutral-300 dark:hover:bg-neutral-600"
           >
             <PlusIcon className="w-4 h-4 text-muted-foreground" />
