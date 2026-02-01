@@ -7,14 +7,23 @@ import { useConvexAuth } from "convex/react";
 import { SignInButton } from "@clerk/nextjs";
 import Spinner from "@/components/spinner";
 import Link from "next/link";
+import Image from "next/image";
 
 function Heading() {
   const { isAuthenticated, isLoading } = useConvexAuth();
   return (
     <div className="max-w-3xl space-y-2 sm:space-y-3 md:space-y-4 px-6 md:px-0">
+      <Image
+        src="/img/notion.avif"
+        alt="Notion"
+        width={730}
+        height={700}
+        className=""
+      />
+
       <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold">
-        Your Ideas, Documents, & Plans. Unified. Welcome to{" "}
-        <span className="underline ml-1">Notion</span>
+        One hub Zero
+        <span className="underline ml-1">clutter</span>
       </h1>
       <h3 className="text-base sm:text-xl md:text-2xl font-medium">
         Notion is the all-in-one workspace you can use to write, plan,

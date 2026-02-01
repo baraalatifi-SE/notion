@@ -13,14 +13,14 @@ function Logo() {
     <div className="hidden md:flex items-center gap-x-2 w-full">
       <Image
         className="dark:hidden"
-        src={"/img/1logowhite.png"}
+        src={"/img/BOK.png"}
         alt="logo"
-        height={60}
-        width={60}
+        height={40}
+        width={40}
       />
       <Image
         className="dark:block hidden"
-        src={"/img/1nnew.png"}
+        src={"/img/BOK.png"}
         alt="logo"
         height={40}
         width={40}

@@ -8,6 +8,8 @@ import { useMutation } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
+import Lottie from "lottie-react";
+import noteAnimation from "@/public/img/lottie.json";
 function MainPage() {
   const router = useRouter();
   const { user } = useUser();
@@ -42,14 +44,19 @@ function MainPage() {
         height={300}
       />
 
-      <h2 className="text-lg font-medium">
+      <h2 className="text-lg font-medium mb-0">
         Welcome to {user?.firstName}&apos;s Notion
       </h2>
-
-      <Button onClick={onCreateDocument}>
-        <PlusIcon className="w-4 h-4 mr-2" />
-        Create a Note
-      </Button>
+      <div className="flex flex-col items-center">
+        <div onClick={onCreateDocument}>
+          <Lottie
+            style={{ width: "250px", cursor: "pointer" }}
+            animationData={noteAnimation}
+            loop
+            autoplay
+          />
+        </div>
+      </div>
     </div>
   );
 }
